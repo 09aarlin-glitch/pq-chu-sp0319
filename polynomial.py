@@ -39,6 +39,9 @@ class Polynomial():
         for i in range(lower.degree+2,higher.degree+1):
             new_coefficients.append(higher.coefficients[i])
         return Polynomial(coefficients=new_coefficients, degree=higher.degree)
+    
+    def scalar_mult(self, multiplier):
+        self.coefficients *= multiplier
 
 class Poly2(Polynomial):
     def __init__(self,a=1,b=2,c=3):
