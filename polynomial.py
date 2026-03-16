@@ -50,10 +50,12 @@ class Polynomial():
             raise ValueError
 
     def scalar_mult(self, multiplier):
+        ## Helper function for __mul__ implementation
         new_coefficients = [coeffecient * multiplier for coeffecient in self.coefficients]
         return Polynomial(coefficients=new_coefficients, degree=self.degree)
     
     def poly_mult(self, other:'Polynomial')-> 'Polynomial':
+        ## Helper function for __mul__ implementation
         new_degree = self.degree + other.degree
         new_coefficients = [0]*(new_degree+1)
         for index_o, coefficent_o in enumerate(other.coefficients):
