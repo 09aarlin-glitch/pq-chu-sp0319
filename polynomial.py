@@ -24,6 +24,22 @@ class Polynomial():
             x_term *= x
         return value
 
+    def __add__(self, other:'Polynomial')-> 'Polynomial':
+        ## Check which is higher degree and rename accordingly
+        if self.degree > other.degree:
+            higher = self
+            lower = other
+        else:
+            higher = other
+            lower = self
+
+        #add coeffecients where both has terms
+        new_coefficients = [lower.coefficients[i]+higher.coefficients[i] for i in range(0, lower.degree+1)]
+        #Then append values from higher
+        for i in range(lower.degree+2,higher.degree+1):
+            new_coefficients.append(higher.coefficients[i])
+        return Polynomial(coefficients=new_coefficients, degree=higher.degree)
+
 class Poly2(Polynomial):
     def __init__(self,a=1,b=2,c=3):
         with_coefficients=[c,b,a]
@@ -52,6 +68,8 @@ class Poly2(Polynomial):
     @c.setter
     def c(self, to_value: float):
         self.coefficients[0] = to_value
+
+    
     
 
 my_poly = Poly2(1,5,-2)
