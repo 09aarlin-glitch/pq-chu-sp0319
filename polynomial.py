@@ -44,6 +44,14 @@ class Polynomial():
         new_coefficients = [coeffecient * multiplier for coeffecient in self.coefficients]
         return Polynomial(coefficients=new_coefficients, degree=self.degree)
     
+    def poly_mult(self, other:'Polynomial')-> 'Polynomial':
+        new_degree = self.degree + other.degree
+        new_coefficients = [0]*(new_degree+1)
+        for index_o, coefficent_o in enumerate(other.coefficients):
+            for index_s, coefficent_s in enumerate(self.coefficients):
+                new_coefficients[index_o+index_s] += coefficent_o*coefficent_s
+        return Polynomial(coefficients=new_coefficients, degree= new_degree)
+
     def __sub__(self, other:'Polynomial') -> 'Polynomial':
         other_inverted = other.scalar_mult(-1)
         return self + other_inverted
@@ -77,8 +85,6 @@ class Poly2(Polynomial):
     def c(self, to_value: float):
         self.coefficients[0] = to_value
 
-    
-    
 def test_cases():
     my_poly = Poly2(1,5,-2)
     print(my_poly)
@@ -87,8 +93,10 @@ def test_cases():
     my_poly = my_poly.scalar_mult(10)
 
     my_second_poly = Poly2(2,1,4)
+    base_poly = Poly2(1,1,1)
     print(my_poly+my_second_poly)
     print(my_poly-my_second_poly)
+    print(base_poly.poly_mult(base_poly))
 
 if __name__ == '__main__':
     test_cases()
