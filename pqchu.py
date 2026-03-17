@@ -21,26 +21,32 @@ class PQApp(tk.Frame):
         mainframe = ttk.Frame(self, padding=(3, 3, 12, 12))
         mainframe.grid(column=0, row=0, sticky=(N, W, E, S))
         self.left_a_entry = tk.Entry(mainframe, width=5, textvariable=self.l_a)
+        self.left_a_entry.insert(0,'0')
         self.left_a_entry.grid(column=0,row=1)
         self.left_a_label = ttk.Label(mainframe, text="x^2 +").grid(column=1,row=1)
 
         self.left_b_entry = tk.Entry(mainframe, width=5, textvariable=self.l_b)
+        self.left_b_entry.insert(0,'0')
         self.left_b_entry.grid(column=2,row=1)
         self.left_b_label = ttk.Label(mainframe, text="x +").grid(column=3,row=1)
 
         self.left_c_entry = tk.Entry(mainframe, width=5, textvariable=self.l_c)
+        self.left_c_entry.insert(0,'0')
         self.left_c_entry.grid(column=4,row=1)
         self.left_c_label = ttk.Label(mainframe, text=" = ").grid(column=5,row=1)
 
         self.right_a_entry = tk.Entry(mainframe, width=5, textvariable=self.r_a)
+        self.right_a_entry.insert(0,'0')
         self.right_a_entry.grid(column=6,row=1)
         self.right_a_label = ttk.Label(mainframe, text="x^2 +").grid(column=7,row=1)
 
         self.right_b_entry = tk.Entry(mainframe, width=5, textvariable=self.r_b)
+        self.right_b_entry.insert(0,'0')
         self.right_b_entry.grid(column=8,row=1)
         self.right_b_label = ttk.Label(mainframe, text="x +").grid(column=9,row=1)
 
         self.right_c_entry = tk.Entry(mainframe, width=5, textvariable=self.r_c)
+        self.right_c_entry.insert(0,'0')
         self.right_c_entry.grid(column=10,row=1)
 
         self.quit_button = tk.Button(self, text='Exit', command=self.quit)
