@@ -123,7 +123,7 @@ class Poly2(Polynomial):
         elif zeros[0] == zeros[1]:
             return f"Equation has a double root at x={zeros[0]}"
         else:
-            return f"Equation has roots at x_1={zeros[0]} and x_2={zeros[1]}"
+            return f"Equation has roots at x_1={zeros[0]:.3f} and x_2={zeros[1]:.3f}"
 
 def test_cases():
     my_poly = Poly2(1,5,-2)

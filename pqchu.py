@@ -50,7 +50,9 @@ class PQApp(tk.Frame):
         self.right_c_entry.insert(0,'0')
         self.right_c_entry.grid(column=10,row=1)
 
-        self.answer_label = tk.Label(mainframe, text="Enter equation and press solve").grid(column=2,row=2, columnspan=7)
+        self.answertext = tk.StringVar()
+        self.answer_label = tk.Label(mainframe, textvariable=self.answertext).grid(column=2,row=2, columnspan=7)
+        self.answertext.set("Enter equation an press solve")
 
         self.quit_button = tk.Button(self, text='Exit', command=self.quit)
         self.quit_button.grid(column=0, row=2, sticky=(W,S))
@@ -62,11 +64,12 @@ class PQApp(tk.Frame):
         print("DEBUG: The solve button was pressed")
         left_poly, right_poly = self.read_fields()
         solveable_poly = left_poly-right_poly
+        self.answertext.set(Poly2.analyse_solution(solveable_poly.zeros()))
         print(self.l_a.get(), " - ",self.l_b.get() , " - ",self.l_c.get() , " - ",self.r_a.get(), " - ",self.r_b.get(), " - ",self.r_c.get())
 
     def read_fields(self)-> tuple[Poly2, Poly2]:
-        left_poly = Poly2(a=self.left_a_entry.get(), b=self.left_b_entry.get(), c=self.left_c_entry.get())      
-        right_poly = Poly2(a=self.right_a_entry.get(), b=self.right_b_entry.get(), c=self.right_c_entry.get())
+        left_poly = Poly2(a=float(self.left_a_entry.get()), b=float(self.left_b_entry.get()), c=float(self.left_c_entry.get()))      
+        right_poly = Poly2(a=float(self.right_a_entry.get()), b=float(self.right_b_entry.get()), c=float(self.right_c_entry.get()))
         return (left_poly, right_poly)
 
 app = PQApp()
