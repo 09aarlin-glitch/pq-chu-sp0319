@@ -50,6 +50,8 @@ class PQApp(tk.Frame):
         self.right_c_entry.insert(0,'0')
         self.right_c_entry.grid(column=10,row=1)
 
+        self.answer_label = tk.Label(mainframe, text="Enter equation and press solve").grid(column=2,row=2, columnspan=7)
+
         self.quit_button = tk.Button(self, text='Exit', command=self.quit)
         self.quit_button.grid(column=0, row=2, sticky=(W,S))
 

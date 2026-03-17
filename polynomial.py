@@ -108,6 +108,23 @@ class Poly2(Polynomial):
         other_inverted = other.scale(-1)
         return self + other_inverted
 
+    def zeros(self) -> tuple[float | None, float | None]:
+        rootable = self.b**2 - 4*self.a*self.c
+        if rootable < 0:
+            return (None, None)
+        symmetry_line = -self.b/(2*self.a)
+        separation = rootable**0.5/(2*self.a)
+        return (symmetry_line + separation, symmetry_line - separation)
+    
+    @staticmethod
+    def analyse_solution(zeros: tuple[float | None, float | None]) -> str:
+        if zeros[1] is None:
+            return "Equation has no real solutions"
+        elif zeros[0] == zeros[1]:
+            return f"Equation has a double root at x={zeros[0]}"
+        else:
+            return f"Equation has roots at x_1={zeros[0]} and x_2={zeros[1]}"
+
 def test_cases():
     my_poly = Poly2(1,5,-2)
     print(my_poly)
