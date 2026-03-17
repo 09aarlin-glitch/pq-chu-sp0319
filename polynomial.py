@@ -68,7 +68,7 @@ class Polynomial():
         return self + other_inverted
     
 class Poly2(Polynomial):
-    def __init__(self,a=1,b=2,c=3):
+    def __init__(self,a:float | int=1,b:float | int=2,c:float | int=3):
         with_coefficients=[c,b,a]
         super().__init__(coefficients=with_coefficients)
 
@@ -95,6 +95,19 @@ class Poly2(Polynomial):
     @c.setter
     def c(self, to_value: float):
         self.coefficients[0] = to_value
+
+    def __add__(self, other:'Poly2') -> 'Poly2':
+        ## Check which is higher degree and rename accordingly
+        #add coeffecients where both has terms
+        new_coefficients = [self.coefficients[i]+other.coefficients[i] for i in range(0,2+1)]
+        return Poly2(a=new_coefficients[2], b=new_coefficients[1], c=new_coefficients[0])
+
+    def scale(self, factor:float | int) -> Poly2:
+        return Poly2(a=self.coefficients[2]*factor, b=self.coefficients[1]*factor, c=self.coefficients[0]*factor)
+
+    def __sub__(self, other:'Poly2') -> 'Poly2':
+        other_inverted = other.scale(-1)
+        return self + other_inverted
 
 def test_cases():
     my_poly = Poly2(1,5,-2)
