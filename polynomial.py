@@ -97,8 +97,7 @@ class Poly2(Polynomial):
         self.coefficients[0] = to_value
 
     def __add__(self, other:'Poly2') -> 'Poly2':
-        ## Check which is higher degree and rename accordingly
-        #add coeffecients where both has terms
+        #Poly2 always has degree 2, so no extra checks needed
         new_coefficients = [self.coefficients[i]+other.coefficients[i] for i in range(0,2+1)]
         return Poly2(a=new_coefficients[2], b=new_coefficients[1], c=new_coefficients[0])
 
